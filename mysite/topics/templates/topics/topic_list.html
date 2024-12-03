@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Discussion Topics</h1>
+    {% for topic in topics %}
+        <a href="{% url 'topic_detail' topic.id %}" class="text-decoration-none">
+            <div class="card mb-3 hover-shadow" style="transition: box-shadow 0.3s ease;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark">{{ topic.title }}</h5>
+                    <p class="text-dark" style="white-space: pre-wrap;">{{ topic.description }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            Created by {{ topic.author.username }} | {{ topic.created_at }} | {{ topic.comment_count }} comments
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </a>
+    {% empty %}
+        <p>No discussion topics available...</p>
+    {% endfor %}
+</div>
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

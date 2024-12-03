@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">{{ topic.title }}</h2>
+            <p style="white-space: pre-wrap;">{{ topic.description }}</p>
+            <p class="text-muted">
+                Created by {{ topic.author.username }} | {{ topic.created_at }}
+            </p>
+            {% if user == topic.author %}
+                <a href="{% url 'edit_topic' topic.id %}" class="btn btn-outline-primary">Edit</a>
+                <a href="{% url 'delete_topic' topic.id %}" class="btn btn-outline-danger">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <h3>Comments ({{ topic.comment_count }})</h3>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_comment' topic.id %}">
+            {% csrf_token %}
+            {{ comment_form|crispy }}
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+    {% endif %}
+
+    {% for comment in comments %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <p style="white-space: pre-wrap;">{{ comment.text }}</p>
+                <p class="text-muted">
+                    {{ comment.author.username }} | {{ comment.created_at }}
+                    {% if user == comment.author %}
+                        <form method="post" action="{% url 'delete_comment' comment.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
