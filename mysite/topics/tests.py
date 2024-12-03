@@ -305,3 +305,14 @@ class SeleniumTests(LiveServerTestCase):
 
         topic_exists = Topic.objects.filter(title="Test Topic", description="Test Description").exists()
         self.assertTrue(topic_exists)
+
+    def test_delete_topic_while_not_logged_in(self):
+        driver = self.driver
+        self.auth_user()
+        self.create_topic()
+        topic_id = self.get_latest_topic_id()
+        driver.get('%s%s' % (self.live_server_url, '/topics/logout/'))
+
+        driver.get('%s%s' % (self.live_server_url, f'/topics/topic/{topic_id}/delete/'))
+
+        self.assertIn("Not Found", driver.title)
