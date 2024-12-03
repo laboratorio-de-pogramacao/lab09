@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Clonar Repositório') {
             steps {
-                git 'https://github.com/laboratorio-de-pogramacao/lab09.git'
+                git branch: 'main',
+                    url: 'https://github.com/laboratorio-de-pogramacao/lab09.git'
             }
         }
         stage('Configurar Ambiente') {

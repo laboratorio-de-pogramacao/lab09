@@ -8,7 +8,6 @@ pkgs.mkShell {
         tree
         firefox
         geckodriver # Selenium driver
-        jenkins
     ]);
 
 
