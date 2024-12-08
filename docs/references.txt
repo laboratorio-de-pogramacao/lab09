@@ -3,3 +3,4 @@ https://www.selenium.dev/documentation/webdriver/getting_started/first_script/
 https://search.nixos.org/packages?channel=unstable&show=jenkins&from=0&size=50&sort=relevance&type=packages&query=jenkins
 https://selenium-python.readthedocs.io/installation.html#installing-python-bindings-for-selenium
 https://www.browserstack.com/guide/find-element-by-text-using-selenium
+https://radon.readthedocs.io/en/latest/commandline.html#the-cc-command
