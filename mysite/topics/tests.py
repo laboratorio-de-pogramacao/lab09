@@ -5,10 +5,7 @@ from .forms import TopicForm, CommentForm, RegisterForm, LoginForm
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from django.contrib.auth.models import User
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 # Model testing
 class TopicModelTest(TestCase):

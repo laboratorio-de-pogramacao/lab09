@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Migrações da Base de Dados') {
             steps {
-                sh './venv/bin/python manage.py migrate --noinput'
+                sh './venv/bin/python mysite/manage.py migrate --noinput'
             }
         }
         stage('Executar Testes') {
             steps {
-                sh './venv/bin/coverage run --source="." manage.py test'
+                sh './venv/bin/coverage run --source="." mysite/manage.py test'
             }
         }
         stage('Gerar Relatórios de Cobertura') {
