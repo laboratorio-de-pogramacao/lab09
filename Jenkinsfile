@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Executar Testes') {
             steps {
-                sh './venv/bin/coverage run --source="." mysite/manage.py test'
+                sh './../venv/bin/coverage run --source="topics" manage.py test'
             }
         }
         stage('Gerar Relatórios de Cobertura') {
