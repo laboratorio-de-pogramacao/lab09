@@ -21,7 +21,7 @@ pkgs.mkShell {
         pip install -r requirements.txt
 
         alias cls='clear'
-        alias drun='cd docker-2.488; docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts; cd ..'
+        alias drun='docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts'
         alias makemigrations='python manage.py makemigrations '
         alias sqlmigrate='python manage.py sqlmigrate topics 0001'
         alias migrate='python manage.py migrate'
